@@ -16,7 +16,7 @@ int main()
     cout << "\n\t\t ££Welcome to The Gambling Simulator ££ \n\n";
     cout << "\n\nPlease enter your name here:";
     getline(cin, playerName);
-    cout << "\n\nEnter how much money you wish to start with $";
+    cout << "\n\nEnter how much money you wish to start with £";
     cin >> balance; // Will be set after a user input
     do
     {
@@ -45,7 +45,7 @@ int main()
         if(dice == guess)
         {
             cout << "\n\nYou are in luck!! You have won ££" << bettingAmount * 10;
-            balance = balance + bettingAmount * 10;
+            balance = balance + bettingAmount * 5;
         }
         else
         {
@@ -71,6 +71,6 @@ void rules()
     system("cls");
     cout << "\t\tGambling Simulator, rules of betting\n";
     cout << "\t1. Choose any integer ranging from 1 to 10\n";
-    cout << "\t2. Winner gets 10 times of the money bet\n";
+    cout << "\t2. Winner gets 5 times of the money bet\n";
     cout << "\t3. Wrong bet, and you lose the amount you bet\n\n";
 }
