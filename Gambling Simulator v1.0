@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string> 
+#include <cstdlib> 
+#include <ctime> // All imported libraries
+using namespace std;
+void rules();
+int main()
+{
+    string playerName;
+    int balance; // The player total balance goes here
+    int bettingAmount;
+    int guess;
+    int dice; // Used to store the random number
+    char choice;
+    srand(time(0)); 
+    cout << "\n\t\t ££Welcome to The Gambling Simulator ££ \n\n";
+    cout << "\n\nPlease enter your name here:";
+    getline(cin, playerName);
+    cout << "\n\nEnter how much money you wish to start with $";
+    cin >> balance; // Will be set after a user input
+    do
+    {
+        system("cls");
+        rules();
+        cout << "\n\nYour current balance is £ " << balance << "\n";
+// Will fetch the players betting ammount
+        do
+        {
+            cout << "Hey, " << playerName<<", enter your betting amount ££";
+            cin >> bettingAmount;
+            if(bettingAmount > balance)
+                cout << "Betting balance can't be more than current balance!\n"
+                       <<"\nRe-enter balance\n ";
+        }while(bettingAmount > balance);
+// Get player's numbers
+        do
+        {
+            cout << "Guess any integer between 1 & 10 to bet on";
+            cin >> guess;
+            if(guess <= 0 || guess > 10)
+                cout << "\nNumber should be between 1 to 10\n"
+                    <<"Re-enter number:\n ";
+        }while(guess <= 0 || guess > 10);
+        dice = rand()%10 + 1;
+        if(dice == guess)
+        {
+            cout << "\n\nYou are in luck!! You have won ££" << bettingAmount * 10;
+            balance = balance + bettingAmount * 10;
+        }
+        else
+        {
+            cout << "Rip, You lost £ "<< bettingAmount <<"\n";
+            balance = balance - bettingAmount;
+        }
+        cout << "\nThe winning number was : " << dice <<"\n";
+        cout << "\n"<<playerName<<", You have balance of £" << balance << "\n";
+        if(balance == 0)
+        {
+            cout << "You have no money";
+            break;
+        }
+        cout << "\n\n-->Do you want to play again (y/n)? ";
+        cin >> choice;
+    }while(choice =='Y'|| choice=='y');
+    cout << "\n\n\n";
+    cout << "\n\nThanks for playing the Gambling Simulator! Your balance is £ " << balance << "\n\n";
+    return 0;
+}
+void rules()
+{
+    system("cls");
+    cout << "\t\tGambling Simulator, rules of betting\n";
+    cout << "\t1. Choose any integer ranging from 1 to 10\n";
+    cout << "\t2. Winner gets 10 times of the money bet\n";
+    cout << "\t3. Wrong bet, and you lose the amount you bet\n\n";
+}
